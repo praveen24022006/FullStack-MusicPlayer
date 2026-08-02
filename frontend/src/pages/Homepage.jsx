@@ -106,6 +106,11 @@ const Homepage = () => {
       }
     },0);
   }
+
+  useEffect(() => {
+    console.log("searchSongs changed:", searchSongs);
+}, [searchSongs]);
+
   return (
     <div className="homepage-root">
       <audio ref={audioRef} 
