@@ -14,7 +14,7 @@ const SearchBar = ({setSearchSongs}) => {
       try {
         setLoading(true);
         const res=await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/api/songs/playlistByTag/${encodeURIComponent(query)}`,
+          `${import.meta.env.VITE_BASE_URL}/api/songs/search/${encodeURIComponent(query)}`,
         );
         setSearchSongs(res.data.results);
       } catch (error) {

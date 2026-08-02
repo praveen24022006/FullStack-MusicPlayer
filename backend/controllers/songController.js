@@ -12,6 +12,33 @@ const getSongs = async (req, res) => {
   }
 };
 
+const searchSongs = async (req, res) => {
+  try {
+    const query = req.params.query?.trim();
+
+    if (!query) {
+      return res.status(400).json({ message: "Search query required" });
+    }
+
+    const response = await axios.get(
+      "https://api.jamendo.com/v3.0/tracks/",
+      {
+        params: {
+          client_id: "0b4b8586",
+          format: "jsonpretty",
+          limit: 20,
+          search: query,
+        },
+      }
+    );
+
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Search failed" });
+  }
+};
+
 const getPlaylistByTag = async (req, res) => {
   try {
     const tag = (req.params.tag || req.query.tag || "").toString().trim();
@@ -61,4 +88,4 @@ const toggleFavourite = async (req, res) => {
   }
 };
 
-export { getSongs, getPlaylistByTag, toggleFavourite };
+export { getSongs, getPlaylistByTag, searchSongs, toggleFavourite };
