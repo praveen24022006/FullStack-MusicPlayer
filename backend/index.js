@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors"; 
-dotenv.config(".env");
+dotenv.config();
 import connectDB from "./config/connectDB.js";
 import router from "./routes/authRoutes.js";
 import imagekit from "./config/imagekit.js";
